@@ -1,0 +1,194 @@
+[
+  {
+    "model": "event_platform.tag",
+    "pk": 1,
+    "fields": {
+      "name": "打工",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 2,
+    "fields": {
+      "name": "社团",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 3,
+    "fields": {
+      "name": "恋爱",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 4,
+    "fields": {
+      "name": "购物",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 5,
+    "fields": {
+      "name": "运动",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 6,
+    "fields": {
+      "name": "游戏",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 7,
+    "fields": {
+      "name": "旅游",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 8,
+    "fields": {
+      "name": "车",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 9,
+    "fields": {
+      "name": "漫画",
+      "tag_type": "1"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 10,
+    "fields": {
+      "name": "教育",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 11,
+    "fields": {
+      "name": "经济",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 12,
+    "fields": {
+      "name": "法律",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 13,
+    "fields": {
+      "name": "文学",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 14,
+    "fields": {
+      "name": "工学",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 15,
+    "fields": {
+      "name": "理学",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 16,
+    "fields": {
+      "name": "生物",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 17,
+    "fields": {
+      "name": "国际关系",
+      "tag_type": "2"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 18,
+    "fields": {
+      "name": "职业规划",
+      "tag_type": "3"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 19,
+    "fields": {
+      "name": "Venture企业",
+      "tag_type": "3"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 20,
+    "fields": {
+      "name": "工作",
+      "tag_type": "3"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 21,
+    "fields": {
+      "name": "就职活动",
+      "tag_type": "3"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 22,
+    "fields": {
+      "name": "创业",
+      "tag_type": "3"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 23,
+    "fields": {
+      "name": "回国求职",
+      "tag_type": "3"
+    }
+  },
+  {
+    "model": "event_platform.tag",
+    "pk": 24,
+    "fields": {
+      "name": "实习",
+      "tag_type": "3"
+    }
+  }
+]

@@ -1,0 +1,13 @@
+.wrapper {
+    width: 500px;
+    margin: 100px auto;
+    padding: 50px;
+    background-color: white;
+}
+
+body {
+    background: url("/static/resources/images/bg-image.jpg")no-repeat;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+}

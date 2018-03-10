@@ -6,32 +6,35 @@
 
     <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/bootstrap/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/static/css/style/register.css">
     <link rel="stylesheet" href="/static/css/fontawesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/style/register.css">
 </head>
 <body>
 <div class="wrapper">
-    <form ng-submit="registerForm()" role="form">
+    <form ng-submit="registerForm()" role="form" browser-autocomplete-form>
         <h2>吸猫会所注册</h2>
         <div class="form-group">
-            <input name="id" class="form-control" placeholder="username" ng-model="account.username">
+            <input class="form-control" placeholder="username" ng-model="account.username">
+            <div class="message-warning">[[userMessage]]</div>
         </div>
         <div class="form-group">
-            <input type="email" class="form-control" placeholder="email" ng-model="account.email">
+            <input class="form-control" placeholder="email" ng-model="account.email">
+            <div class="message-warning">[[emailMessage]]</div>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="password" ng-model="account.password">
+            <div class="message-warning">[[passwordMessage]]</div>
         </div>
         <div class="row">
             <div class="col-xs-8">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox">我已阅读并同意<a href="#">服务条款</a>
+                        <input type="checkbox" ng-model="agree">我已阅读并同意<a href="#">服务条款</a>
                     </label>
                 </div>
             </div>
             <div class="col-xs-4">
-                <button class="btn btn-info pull-right" type="submit">注册</button>
+                <button class="btn btn-info pull-right" type="submit" ng-disabled="!agree">注册</button>
             </div>
         </div>
     </form>
@@ -44,8 +47,8 @@
 <script type="text/javascript" src="/static/js/angularJS/angular-cookies.js"></script>
 
 
-<script type="text/javascript" src="/static/js/app/controllers/loginController.js"></script>
 <script type="text/javascript" src="/static/js/app/app.js"></script>
+<script type="text/javascript" src="/static/js/app/controllers/loginController.js"></script>
 
 </body>
 </html>

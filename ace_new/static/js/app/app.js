@@ -6,7 +6,21 @@ var app = angular
         //TODO
     })
 
-    .controller('loginCtrl', loginCtrl);
+    .directive('browserAutocompleteForm', function() {
+            return {
+                priority: 10,
+                link: function(scope, element, attrs) {
+                    element.on('submit', function (ev) {
+                        $('input[ng-model]', element).each(function (index, item) {
+                            if (angular.element(this).attr('type') !== 'checkbox' && angular.element(this).attr('type') !== 'radio') {
+                                angular.element(this).controller('ngModel').$setViewValue($(this).val());
+                            }
+                        });
+                    });
+                }
+            };
+        })
+;
 
 
 /*
@@ -60,7 +74,6 @@ app.config(function ($interpolateProvider, $httpProvider) {
               for(name in obj)
               {
                   value = obj[name];
-                  console.log(value);
 
 
                   if(value instanceof Array)

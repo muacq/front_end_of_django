@@ -46,21 +46,10 @@ function loginCtrl($scope, $http, $timeout) {
                 url: "/api/login/register",
                 method: "post",
                 data: $scope.account
-
             }).then(function (response) {
-                console.log(response)
+                localStorage.setItem("token", response.data.result._token);
+                console.log(localStorage.getItem("token"));
             });
         })
     };
-
-    $scope.checkUsername = function () {
-        var username = $scope.account.username;
-        console.log(username);
-        console.log(username.length);
-        if(username === undefined || username.length === 0){
-            $scope.userMessage = "用户名不能为空"
-            return
-        }
-        $scope.userMessage = ""
-    }
 }

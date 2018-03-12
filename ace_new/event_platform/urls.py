@@ -87,7 +87,9 @@ urlpatterns = [
 
     url(r'^api/tags/interest/get$', views.get_interests),
 
-    url(r'^register/$',views.register)
+    url(r'^login/$',views.login),
+
+    url(r'^register/$',views.register),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

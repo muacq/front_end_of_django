@@ -5,7 +5,6 @@
     <title>Japan do you know</title>
 
     <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/bootstrap/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/static/css/fontawesome/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/style/register.css">
 </head>
@@ -15,11 +14,11 @@
         <h2>登录</h2>
         <div class="form-group">
             <input class="form-control" placeholder="username" ng-model="account_login.email">
-            <div class="message-warning">[[emailMessage_login]]</div>
+            <div class="message-warning" ng-cloak>[[emailMessage_login]]</div>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="password" ng-model="account_login.password">
-            <div class="message-warning">[[passwordMessage_login]]</div>
+            <div class="message-warning" ng-cloak>[[passwordMessage_login]]</div>
         </div>
 
         <div class="row">
@@ -45,15 +44,15 @@
         <h2>吸猫会所注册</h2>
         <div class="form-group">
             <input class="form-control" placeholder="username" ng-model="account_register.username">
-            <div class="message-warning">[[userMessage_register]]</div>
+            <div class="message-warning" ng-cloak>[[userMessage_register]]</div>
         </div>
         <div class="form-group">
             <input class="form-control" placeholder="email" ng-model="account_register.email">
-            <div class="message-warning">[[emailMessage_register]]</div>
+            <div class="message-warning" ng-cloak>[[emailMessage_register]]</div>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="password" ng-model="account_register.password">
-            <div class="message-warning">[[passwordMessage_register]]</div>
+            <div class="message-warning" ng-cloak>[[passwordMessage_register]]</div>
         </div>
         <div class="row">
             <div class="col-xs-12">
@@ -84,6 +83,7 @@
 <script type="text/javascript" src="/static/js/angularJS/angular.js"></script>
 <script type="text/javascript" src="/static/js/angularJS/angular-animate.min.js"></script>
 <script type="text/javascript" src="/static/js/angularJS/angular-cookies.js"></script>
+<script type="text/javascript" src="/static/js/angularJS/ng-tags-input.min.js"></script>
 
 
 <script type="text/javascript" src="/static/js/app/app.js"></script>

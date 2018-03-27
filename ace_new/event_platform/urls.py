@@ -87,9 +87,17 @@ urlpatterns = [
 
     url(r'^api/tags/interest/get$', views.get_interests),
 
+    url(r'^api/tags/get_tags_by_question$', views.get_tags_by_question),
+
     url(r'^login/$',views.login),
 
     url(r'^register/$',views.register),
+
+    url(r'^$', views.index),
+
+    url(r'^explore/$', views.explore),
+
+    url(r'^question/\d+/$', views.question_detail),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

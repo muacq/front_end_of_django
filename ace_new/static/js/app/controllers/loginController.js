@@ -1,4 +1,4 @@
-app = angular.module("myApp")
+angular.module("myApp")
     .controller("loginCtrl", loginCtrl);
 
 function loginCtrl($scope, $http, $timeout, $location) {
@@ -88,10 +88,10 @@ function loginCtrl($scope, $http, $timeout, $location) {
             $http({
                 url: "/api/login/login",
                 method: "post",
-                data: $scope.account
+                data: $scope.account_login
             }).then(function (response) {
                 localStorage.setItem("token", response.data.result._token);
-                console.log(localStorage.getItem("token"));
+                window.location.href = "/";
             });
         })
     };
@@ -106,8 +106,6 @@ function loginCtrl($scope, $http, $timeout, $location) {
 
     var init = function () {
         var path = $location.absUrl();
-        console.log(path);
-        console.log(12345);
         var logReg = /login/;
         var regReg = /register/;
         if(logReg.test(path)) {

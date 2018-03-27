@@ -1,6 +1,6 @@
 var app = angular
 
-    .module('myApp', ["ngCookies"])
+    .module('myApp', ["ngCookies", "ngTagsInput", "infinite-scroll"])
 
     .controller('globalCtrl', function ($scope, $http, $state) {
         //TODO
@@ -110,7 +110,7 @@ app.config(function ($interpolateProvider, $httpProvider) {
                       query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
                   }
               }
-              console.log("over");
+              console.log(query);
 
 
               return query.length ? query.substr(0, query.length - 1) : query;

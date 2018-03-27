@@ -1,0 +1,47 @@
+.question-title {
+    font-weight: 700;
+    font-size: 14px;
+    outline: 0;
+}
+
+.question-row {
+    margin-bottom: 5px;
+}
+
+.poster {
+    color: #222;
+    font-weight: 700;
+}
+
+.poster > a{
+    color: inherit;
+}
+
+.question-box {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.question-tags {
+    margin-right: 5px;
+}
+
+.question-content {
+    font-size: 13px;
+}
+
+.question-bottom{
+    font-size: 13px;
+    color: #999;
+    margin-top: 5px;
+}
+
+.question-bottom > span {
+    margin-right: 5px;
+}
+
+.question-bottom > span, >span > a{
+    color: inherit;
+    font-size:inherit;
+}

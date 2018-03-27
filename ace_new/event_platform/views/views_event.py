@@ -190,6 +190,7 @@ def get_question(request):
 def get_questions(request):
     offset = get_integer_value(request, 'offset', 0)
     limit = get_integer_value(request, 'limit', 5)
+    print(str(offset) + " " + str(limit))
     questions = Question.objects.all()[offset:offset+limit]
     return encode_response(questions, QuestionSummaryEncoder)
 

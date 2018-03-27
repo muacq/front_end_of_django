@@ -7,6 +7,7 @@ from .views_tag import *
 from .views_user_action import *
 from .test import *
 from .views_login import *
+from .views_index import *
 from ..models import *
 from ..encoder import *
 from django.core.mail import EmailMessage

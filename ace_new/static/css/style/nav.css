@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+}
+
+.message-warning {
+    font-size: 15px;
+    color: #f1403c;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-family: "微软雅黑", sans-serif;
+}
+
+
+.header {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.head-conf {
+    width: 30px;
+    height: 30px;
+}
+
+.mid {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.content {
+    padding:0 15px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}

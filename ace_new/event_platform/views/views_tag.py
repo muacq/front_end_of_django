@@ -77,3 +77,19 @@ def tag_question(request):
         raise AceResponseError('Target question not found.')
 
     question.tags.set(tags)
+
+
+@ace_response
+def get_tags_by_question(request):
+    # TODO
+    # _ = get_validated_user(request)
+    if 'qid' not in request.POST:
+        raise AceResponseError('Question ID not provided.')
+    qid = request.POST['qid']
+    question = None
+    try:
+        question = Question.objects.get(pk=qid)
+    except ObjectDoesNotExist:
+        raise AceResponseError('Target question not found.')
+    tags = question.tags.all()
+    return encode_response(tags, TagEncoder)

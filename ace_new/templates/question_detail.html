@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>发现</title>
+    <link rel="stylesheet" href="/static/css/fonts/glyphicons-halflings-regular.eot">
+    <link rel="stylesheet" href="/static/css/fonts/glyphicons-halflings-regular.ttf">
+    <link rel="stylesheet" href="/static/css/fonts/glyphicons-halflings-regular.woff">
+    <link rel="stylesheet" href="/static/css/fonts/glyphicons-halflings-regular.woff2">
+    <link rel="stylesheet" href="/static/css/fonts/glyphicons-halflings-regular.svg">
     <link rel="stylesheet" href="/static/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/fontawesome/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/angularJS/ng-tags-input.min.css">
     <link rel="stylesheet" href="/static/css/angularJS/ng-tags-input.bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/style/nav.css">
@@ -34,7 +38,7 @@
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
-                        <button type="submit" class="btn btn-info navbar-btn navbar-right"
+                        <button type="submit" class="btn btn-primary navbar-btn navbar-right"
                                 data-toggle="modal" data-target="#question-box">我要提问</button>
                         <div class="modal fade" id="question-box"
                              tabindex="-1" role="dialog" aria-labelledby="question-title" aria-hidden="true">
@@ -49,13 +53,13 @@
                                             <div class="form-group">
                                                 <textarea class="form-control" placeholder="输入问题标题"
                                                           ng-model="post_ques_info.title"></textarea>
-                                                <div class="message-warning" ng-cloak>[[title_warning]]</div>
+                                                <div class="message-warning" ng-bind="title_warning"></div>
                                             </div>
                                             <div class="form-group">
                                                 <tags-input ng-model="tags" ng-cloak>
                                                     <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
                                                 </tags-input>
-                                                <div class="message-warning" ng-cloak>[[tag_warning]]</div>
+                                                <div class="message-warning" ng-bind="tag_warning">></div>
                                             </div>
                                             <div class="form-group">
                                                 <textarea class="form-control" placeholder="输入问题描述"
@@ -75,16 +79,96 @@
             </nav>
         </div>
     </div>
-    <div class="question-table" ng-controller="questionDetailCtrl">
-        <div class="question-detail mid">
-            <div class="container-fluid">
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
-                <div class="row"></div>
+    <div class="question-table" ng-controller="questionDetailCtrl" ng-show="load_count === 0" ng-cloak>
+        <div class="question-layer">
+            <div class="question-detail mid">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <a class="btn btn-default btn-sm question-tags" ng-repeat="question_tag in tags"
+                                     href="/tags/[[question_tag.id]]" ng-bind="question_tag.name">
+                                </a>
+                            </div>
+                            <div class="row question-title" ng-bind="question_detail.title"></div>
+                            <div class="row question-content">
+                                <div class="mini-content" ng-show="show_mini" ng-click="show_mini = false">
+                                    <span class="mini-detail" ng-bind="mini_content"></span>
+                                    <span class="show-all">显示全文</span>
+                                    <span class="glyphicon glyphicon-chevron-down show-all"></span>
+                                </div>
+                                <span ng-show="!show_mini" ng-bind-html="full_content | ntobr |trustHtml"></span>
+                            </div>
+                            <div class="row">
+                                <a class="question-button btn btn-default btn-md"
+                                        ng-click="write_answer = true" ng-class="{'disabled':question_answerd}"
+                                        ng-disabled="question_answerd">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    <span ng-hide="question_answerd">写答案</span>
+                                    <span ng-show="question_answerd">已回答</span>
+                                </a>
+                                <a class="btn btn-link"><span class="glyphicon glyphicon-star"></span>邀请回答</a>
+                                <a class="btn btn-link"><span class="glyphicon glyphicon-plus"></span>添加tag</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row pull-right">
+                                <button class="btn btn-sm" ng-class="question_liked ? 'btn-primary':'btn-info'" ng-click="like_post(1)">
+                                    <span class="glyphicon glyphicon-chevron-up" ng-bind="&nbsp;question_detail.like_count"></span>
+                                </button>
+                                <button class="btn btn-sm" ng-class="question_disliked ? 'btn-primary':'btn-info'" ng-click="dislike_post(1)">
+                                    <span class="glyphicon glyphicon-chevron-down" ng-bind="&nbsp;question_detail.dislike_count"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="content mid" ng-controller="exploreCtrl">
+        <div class="content mid">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8"
+                         infinite-scroll="loadMore()" infinite-scroll-disabled="disable_scroll" infinite-scroll-immediate-check="false">
+                        <div class="row answer-box" ng-show="write_answer">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <textarea placeholder="写回答..." ng-model="answer_content" style="width: 100%; border: none"></textarea>
+                                </div>
+                                <div class="row message-warning" ng-bind="answer_warning"></div>
+                                <div class="row" style="margin-top: 10px">
+                                    <button class="btn btn-md btn-primary pull-right" ng-click="submit_answer()">提交回答</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row answer-box" ng-repeat="answer in answers">
+                            <div class="container-fluid">
+                                <div class="row answer-row">
+                                    <a href="/user/[[answer.poster_id]]" class="answer-title" ng-bind="answer.poster"></a>
+                                </div>
+                                <div class="row answer-row" ng-bind-html="answer.content | ntobr |trustHtml"></div>
+                                <div class="row answer-row">
+                                    <span ng-bind="'发布于 ' + answer.post_time.substring(0, answer.post_time.indexOf('T'))"
+                                          style="color: rgba(133,144,166,.72);"></span>
+                                </div>
+                                <div class="row">
+                                    <button class="btn btn-info btn-sm"
+                                            ng-class="answers_like_statue[answer.id] ? 'btn-primary':'btn-info'"
+                                            ng-click="like_post(2, answer.id, answer)">
+                                        <span class="glyphicon glyphicon-chevron-up" ng-bind="&nbsp;answer.like_count"></span>
+                                    </button>
+                                    <button class="btn btn-info btn-sm"
+                                            ng-class="answers_dislike_statue[answer.id] ? 'btn-primary':'btn-info'"
+                                            ng-click="dislike_post(2, answer.id, answer)">
+                                        <span class="glyphicon glyphicon-chevron-down" ng-bind="&nbsp;answer.dislike_count"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -93,6 +177,7 @@
 <script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/js/angularJS/angular.js"></script>
 <script type="text/javascript" src="/static/js/angularJS/angular-animate.min.js"></script>
+<script type="text/javascript" src="/static/js/angularJS/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="/static/js/angularJS/angular-cookies.js"></script>
 <script type="text/javascript" src="/static/js/angularJS/ng-tags-input.min.js"></script>
 <script type="text/javascript" src="/static/js/angularJS/infinite-scroll.js"></script>

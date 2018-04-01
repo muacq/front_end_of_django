@@ -1,6 +1,6 @@
 var app = angular
 
-    .module('myApp', ["ngCookies", "ngTagsInput", "infinite-scroll"])
+    .module('myApp', ["ngCookies", "ngTagsInput", "infinite-scroll", "ngSanitize"])
 
     .controller('globalCtrl', function ($scope, $http, $state) {
         //TODO
@@ -19,7 +19,17 @@ var app = angular
                     });
                 }
             };
-        });
+        })
+
+    .filter('trustHtml', function ($sce) {
+         return function (input) {
+            return $sce.trustAsHtml(input);
+         }
+    }).filter('ntobr', function(){
+        return function(input){
+            return input.replace(/\n/g,"<\/br>").replace(/ /g,"&nbsp;");
+        };
+    });
 
 
 
@@ -110,7 +120,6 @@ app.config(function ($interpolateProvider, $httpProvider) {
                       query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
                   }
               }
-              console.log(query);
 
 
               return query.length ? query.substr(0, query.length - 1) : query;

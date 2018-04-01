@@ -58,8 +58,10 @@ function navCtrl($scope, $http) {
         if(token){
             $scope.post_ques_info._token = token;
         }else{
+            //TODO
             console.log(token);
         }
+        console.log($scope.post_ques_info.content);
         $http({
             url: "/api/question/post_question",
             method: "post",

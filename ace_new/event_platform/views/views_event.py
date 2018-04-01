@@ -192,7 +192,7 @@ def get_questions(request):
     limit = get_integer_value(request, 'limit', 5)
     print(str(offset) + " " + str(limit))
     questions = Question.objects.all()[offset:offset+limit]
-    return encode_response(questions, QuestionSummaryEncoder)
+    return encode_response(questions, QuestionDetailEncoder)
 
 
 @ace_response
@@ -248,7 +248,7 @@ def get_answers(request):
     try:
         question = Question.objects.get(pk=qid)
         answers = Answer.objects.filter(parent_question=question)[offset:offset+limit]
-        return encode_response(answers, AnswerSummaryEncoder)
+        return encode_response(answers, AnswerDetailEncoder)
     except ObjectDoesNotExist:
         raise AceResponseError('Question cannot be found.')
 
@@ -280,6 +280,24 @@ def answer_question(request):
         content = request.POST['content']
         answer = Answer(content=content, poster=user, parent_question=question)
         answer.save()
+    except ObjectDoesNotExist:
+        raise AceResponseError('Question cannot be found.')
+
+
+@ace_response
+def has_answer(request):
+    user = get_validated_user(request)
+    if 'qid' not in request.POST:
+        raise AceResponseError('Question id not specified.')
+    qid = request.POST['qid']
+
+    try:
+        question = Question.objects.get(pk=qid)
+        answers = Answer.objects.filter(parent_question=question)[:]
+        for i in answers:
+            if i.poster_id == user.id:
+                return True
+        return False
     except ObjectDoesNotExist:
         raise AceResponseError('Question cannot be found.')
 
@@ -338,6 +356,7 @@ def like_post(request):
     post.save()
 
 
+
 @ace_response
 def unlike_post(request):
     user = get_validated_user(request)
@@ -378,6 +397,28 @@ def undislike_post(request):
 
     post.disliked_users.remove(user)
     post.save()
+
+
+@ace_response
+def has_like(request):
+    user = get_validated_user(request)
+    posts, _, _ = get_post(request)
+    post = posts[0]
+
+    if user in post.liked_users.all():
+        return True
+    return False
+
+
+@ace_response
+def has_dislike(request):
+    user = get_validated_user(request)
+    posts, _, _ = get_post(request)
+    post = posts[0]
+
+    if user in post.disliked_users.all():
+        return True
+    return False
 
 
 # Invitation
@@ -434,8 +475,6 @@ def get_invitations(request):
 
     invitations = InvitationToAnswer.objects.filter(invited_user=user, is_declined=False)
     return encode_response(invitations, encoder=InvitationToAnswerEncoder)
-
-
 
 
 ## Help Methods

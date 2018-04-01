@@ -87,6 +87,13 @@ urlpatterns = [
 
     url(r'^api/tags/interest/get$', views.get_interests),
 
+    # Add by front end
+    url(r'^api/post/has_like$', views.has_like),
+
+    url(r'^api/post/has_dislike$', views.has_dislike),
+
+    url(r'^api/post/has_answered$', views.has_answer),
+
     url(r'^api/tags/get_tags_by_question$', views.get_tags_by_question),
 
     url(r'^login/$',views.login),

@@ -1,3 +1,56 @@
+.question-layer{
+    background-color: white;
+}
+
 .question-detail {
-    padding: 5px;
+    padding: 15px 30px;
+}
+
+.question-title {
+    font-size: 22px;
+    color: #1a1a1a;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.question-content{
+    margin-bottom: 15px;
+}
+
+.show-all {
+    color: #8590a6;
+}
+
+.mini-content {
+    cursor: pointer;
+}
+
+.mini-content :hover {
+    color: #8590a6;
+}
+
+.mini-detail {
+    color: inherit;
+}
+
+.simple-btn{
+    color: #77839c;
+    background-color: white;
+}
+
+.answer-box{
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-shadow:0 1px 3px rgba(26,26,26,.1);
+    box-sizing: border-box;
+}
+
+.answer-title {
+    color: #222;
+    font-weight: 700;
+}
+
+.answer-row {
+    margin-bottom: 10px;
 }

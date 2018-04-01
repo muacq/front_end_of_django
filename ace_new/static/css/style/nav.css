@@ -15,7 +15,6 @@ body {
 
 .header {
     border-bottom: 1px solid #eee;
-    margin-bottom: 20px;
     background-color: white;
 }
 
@@ -31,8 +30,27 @@ body {
 
 .content {
     padding:0 15px;
+    margin-top: 10px;
 }
 
 .navbar {
     margin-bottom: 0;
+}
+
+.btn-info {
+    background: rgba(0,132,255,.1) none;
+    color: #0084ff;
+}
+
+.btn-primary {
+    background-color: #0084ff;
+    color: white;
+}
+
+.btn.disabled {
+    cursor: auto;
+    box-shadow: none!important;
+    opacity: .65!important;
+    background-color: white;
+    color: #333!important;
 }
